@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 python KNN.py
 python knnv2.py
-python iris_knn.py              # สร้าง results/k_vs_accuracy.png
+python iris_knn.py              # สร้าง results/k_vs_accuracy.png 
 python -m pytest -q
 ```
 
