@@ -1,4 +1,12 @@
+"""Cheap or expensive restaurant from two features.
+
+Feature 1 ranges 40-90 and feature 2 ranges 300-500, so without scaling the
+distance is decided almost entirely by feature 2.
+"""
 import numpy as np
+
+from knn_model import KNN, StandardScaler
+
 X = np.array([
     [40, 500],
     [45, 450],
@@ -18,15 +26,19 @@ y = np.array([
     0, 0, 0, 0, 0, 0,
     1, 1, 1, 1, 1, 1
 ])
+LABELS = {0: "Cheap", 1: "Expensive"}
 
-restaurant = np.array([10, 380])
-distance = np.sqrt(np.sum((X - restaurant) ** 2, axis=1))
+# The old test point [10, 380] was outside the training range of feature 1 (40-90).
+restaurant = np.array([[70, 450]])
 K = 5
-nearest = np.argsort(distance)[:K]
-# Majority Vote
-prediction = np.mean(y[nearest])
-print(prediction)
-if prediction >= 0.5:
-    print("Expensive")
-else:
-    print("Cheap")
+
+raw = KNN(k=K).fit(X, y)
+idx, _ = raw.kneighbors(restaurant)
+print("Without scaling:", LABELS[raw.predict(restaurant)[0]],
+      "| neighbours", X[idx[0]].tolist())
+
+scaler = StandardScaler().fit(X)
+scaled = KNN(k=K).fit(scaler.transform(X), y)
+idx, _ = scaled.kneighbors(scaler.transform(restaurant))
+print("With scaling:   ", LABELS[scaled.predict(scaler.transform(restaurant))[0]],
+      "| neighbours", X[idx[0]].tolist())
