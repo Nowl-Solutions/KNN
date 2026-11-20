@@ -7,7 +7,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from knn_model import KNN, StandardScaler
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="module") 
 def iris_split():
     iris = load_iris()
     return train_test_split(iris.data, iris.target, test_size=0.3,
