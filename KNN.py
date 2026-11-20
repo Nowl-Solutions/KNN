@@ -13,3 +13,4 @@ k = 3
 prediction = np.bincount(y[np.argsort(np.linalg.norm(X - x, axis=1))[:k]]).argmax()
 
 print(f"Predicted class for point {x} is: {prediction}")
+ 
