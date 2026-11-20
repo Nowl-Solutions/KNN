@@ -7,7 +7,7 @@ import numpy as np
 
 
 class StandardScaler:
-    """Rescale every feature to mean 0, standard deviation 1.
+    """Rescale every feature to mean 0, standard deviation 1. 
 
     KNN measures distance, so a feature measured in hundreds (e.g. distance in metres)
     would otherwise drown out a feature measured in tens (e.g. price in baht).
