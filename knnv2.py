@@ -5,7 +5,7 @@ distance is decided almost entirely by feature 2.
 """
 import numpy as np
 
-from knn_model import KNN, StandardScaler
+from knn_model import KNN, StandardScaler 
 
 X = np.array([
     [40, 500],
