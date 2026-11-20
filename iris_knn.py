@@ -29,7 +29,7 @@ def cv_accuracy(X, y, k, scale, folds=5):
             scaler = StandardScaler().fit(X_tr)
             X_tr, X_va = scaler.transform(X_tr), scaler.transform(X_va)
         scores.append(KNN(k).fit(X_tr, y[tr]).score(X_va, y[va]))
-    return round(float(np.mean(scores)), 6)   # rounding stops float noise from breaking ties
+    return round(float(np.mean(scores)), 6)   # rounding stops float noise from breaking ties 
 
 
 def main():
